@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fahrim Arabin Farsa | Computer Science & Engineering</title>
+<meta name="description" content="Portfolio of Fahrim Arabin Farsa, final-year Computer Science and Engineering student at BRAC University: projects from digital hardware and networks to web apps and LLM research.">
+<meta property="og:title" content="Fahrim Arabin Farsa | Computer Science & Engineering">
+<meta property="og:description" content="Projects from digital hardware and networks to web apps and LLM research.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3864'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='white' text-anchor='middle'%3EFF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16213E; --navy:#1F3864; --navy-2:#2A4A80; --paper:#F6F8FB; --white:#FFFFFF;
+    --line:#D5DCE8; --muted:#5B6476; --green:#0B7A5A; --green-soft:#E3F1EC;
+    --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+    --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    --measure:68ch; --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+  a{color:var(--green);text-underline-offset:3px;text-decoration-thickness:1px}
+  a:hover{text-decoration-thickness:2px}
+  :focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:6px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  button{font:inherit;cursor:pointer}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--navy);background:var(--navy);color:var(--white);text-decoration:none;font-weight:600;font-size:.98rem;padding:11px 18px;border-radius:8px;transition:background .15s,color .15s,border-color .15s}
+  .btn:hover{background:var(--ink);border-color:var(--ink);text-decoration:none}
+  .btn.ghost{background:transparent;color:var(--navy)}
+  .btn.ghost:hover{background:var(--white);color:var(--ink)}
+  .btn svg{width:18px;height:18px;flex:none}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+  /* Header */
+  .site-header{position:sticky;top:0;z-index:20;background:rgba(246,248,251,.92);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid transparent;transition:border-color .2s}
+  .site-header.scrolled{border-bottom-color:var(--line)}
+  .bar{display:flex;justify-content:space-between;align-items:center;height:68px}
+  .mark{font:800 1.1rem var(--display);color:var(--navy);text-decoration:none;letter-spacing:-.01em}
+  .menu{display:flex;align-items:center;gap:26px}
+  .menu a.nav-link{color:var(--muted);text-decoration:none;font-size:.97rem;padding:6px 0;border-bottom:2px solid transparent}
+  .menu a.nav-link:hover,.menu a.nav-link.active{color:var(--ink);border-bottom-color:var(--green)}
+  .menu .btn{padding:8px 14px;font-size:.92rem}
+  .menu-toggle{display:none;background:none;border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;color:var(--navy);font-weight:600}
+
+  /* Hero */
+  .hero{padding:88px 0 80px;border-bottom:1px solid var(--line)}
+  h1{font:800 clamp(2.8rem,7.4vw,5.4rem)/1 var(--display);letter-spacing:-.03em;margin:0 0 26px;color:var(--navy)}
+  .lede{font-size:1.28rem;line-height:1.55;max-width:50ch;margin:0 0 34px}
+  .facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin:40px 0 0;padding:0;list-style:none;color:var(--muted);font-size:.97rem}
+  .facts strong{color:var(--ink);font-weight:600}
+
+  /* Sections */
+  section{padding:84px 0}
+  h2{font:700 clamp(1.9rem,3.6vw,2.6rem)/1.08 var(--display);letter-spacing:-.018em;margin:0 0 12px;color:var(--navy)}
+  .intro{color:var(--muted);max-width:var(--measure);margin:0 0 32px}
+
+  /* Filter */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+  .chip{border:1.5px solid var(--line);background:var(--white);color:var(--ink);border-radius:999px;padding:7px 15px;font-size:.93rem;font-weight:500;transition:border-color .15s,background .15s,color .15s}
+  .chip:hover{border-color:var(--navy)}
+  .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:var(--white)}
+  .chip .count{opacity:.7;margin-left:4px}
+
+  /* Stack of projects */
+  .stack{list-style:none;margin:0;padding:0;border-top:2px solid var(--navy)}
+  .proj{display:grid;grid-template-columns:190px 1fr auto;gap:28px;align-items:start;padding:26px 0;border-bottom:1px solid var(--line)}
+  .proj[hidden]{display:none}
+  .layer{font:700 1rem/1.3 var(--display);color:var(--navy);display:flex;gap:10px;align-items:flex-start}
+  .layer::before{content:"";flex:none;width:11px;height:11px;margin-top:.33em;border-radius:3px;background:var(--green)}
+  .proj h3{font:600 1.15rem/1.35 var(--body);margin:0 0 4px}
+  .meta{color:var(--muted);font-size:.93rem;margin:0 0 8px}
+  .proj p.sum{margin:0;max-width:62ch}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+  .tags li{background:var(--green-soft);color:var(--green);font-size:.8rem;font-weight:600;padding:3px 10px;border-radius:999px}
+  .proj .actions{display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:150px}
+  .proj .actions .btn{justify-content:center;padding:9px 14px;font-size:.92rem}
+  .status{display:inline-block;background:#FFF4D6;color:#7A5300;font-size:.78rem;font-weight:600;padding:2px 9px;border-radius:999px;margin-left:8px;vertical-align:2px}
+
+  /* Dialog */
+  dialog{border:none;border-radius:16px;padding:0;width:min(760px,calc(100vw - 32px));max-height:min(86vh,900px);color:var(--ink);box-shadow:0 30px 80px rgba(22,33,62,.28)}
+  dialog::backdrop{background:rgba(22,33,62,.55)}
+  .dlg-head{position:sticky;top:0;background:var(--white);padding:26px 30px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+  .dlg-head h3{font:700 1.5rem/1.2 var(--display);margin:4px 0 6px;color:var(--navy)}
+  .dlg-head .layer{font-size:.9rem}
+  .close{background:var(--paper);border:1.5px solid var(--line);border-radius:8px;width:40px;height:40px;flex:none;font-size:1.3rem;line-height:1;color:var(--navy)}
+  .close:hover{border-color:var(--navy)}
+  .dlg-body{padding:6px 30px 30px}
+  .dlg-body h4{font:700 1.02rem var(--display);color:var(--navy);margin:22px 0 6px}
+  .dlg-body p{margin:0 0 10px}
+  .dlg-body ul{margin:0 0 10px;padding-left:20px}
+  .dlg-body li{margin:5px 0}
+  .dlg-body table{border-collapse:collapse;width:100%;font-size:.93rem;margin:6px 0 10px}
+  .dlg-body th,.dlg-body td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+  .dlg-body th{color:var(--muted);font-weight:600}
+  .dlg-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+
+  /* Two-column sections */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .rows{margin:0;padding:0;list-style:none}
+  .rows>li{padding:18px 0;border-bottom:1px solid var(--line)}
+  .rows>li:first-child{border-top:1px solid var(--line)}
+  .rows strong{display:block;font-weight:600}
+  .rows .sub{color:var(--muted);font-size:.95rem;display:block}
+  .rows ul{margin:8px 0 0;padding-left:20px;font-size:.97rem}
+  .rows ul li{margin:3px 0}
+  .toggle{margin-top:20px;background:none;border:none;color:var(--green);font-weight:600;padding:0;display:inline-flex;gap:8px;align-items:center}
+  .toggle::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border:1.5px solid var(--green);border-radius:6px;line-height:1}
+  .toggle[aria-expanded="true"]::before{content:"\2212"}
+  .coursework{margin-top:18px}
+  .coursework h4{font:600 .98rem var(--body);margin:16px 0 6px;color:var(--navy)}
+  .coursework p{margin:0;color:var(--muted)}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 56px}
+  .skill h3{font:700 1.08rem var(--display);color:var(--navy);margin:0 0 10px}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+  .pills li{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:5px 11px;font-size:.93rem}
+
+  /* Contact */
+  .contact{background:var(--navy);color:var(--white);border-radius:18px;padding:56px;margin:0 0 72px}
+  .contact h2{color:var(--white)}
+  .contact p{max-width:54ch;color:#D9E0EE;margin:0 0 28px}
+  .contact .btn{background:var(--white);color:var(--navy);border-color:var(--white)}
+  .contact .btn:hover{background:var(--green-soft);border-color:var(--green-soft)}
+  .contact .btn.ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.55)}
+  .contact .btn.ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
+  .toast{display:inline-block;margin-left:4px;color:#BFE6D7;font-weight:600;min-height:1.5em}
+  footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.9rem;padding:0 0 40px}
+  footer a{color:var(--muted)}
+
+  .to-top{position:fixed;right:20px;bottom:20px;z-index:15;width:46px;height:46px;border-radius:12px;border:1.5px solid var(--line);background:var(--white);color:var(--navy);font-size:1.2rem;opacity:0;pointer-events:none;transition:opacity .2s}
+  .to-top.show{opacity:1;pointer-events:auto}
+  .to-top:hover{border-color:var(--navy)}
+
+  @media (max-width:860px){
+    .proj{grid-template-columns:1fr;gap:12px}
+    .proj .actions{flex-direction:row;min-width:0}
+  }
+  @media (max-width:760px){
+    .menu-toggle{display:inline-block}
+    .menu{display:none;position:absolute;top:68px;left:0;right:0;background:var(--paper);flex-direction:column;align-items:flex-start;gap:4px;padding:12px 24px 22px;border-bottom:1px solid var(--line)}
+    .menu.open{display:flex}
+    .menu a.nav-link{padding:10px 0;width:100%}
+    .hero{padding:48px 0 56px}
+    .split,.skills-grid{grid-template-columns:1fr;gap:48px}
+    section{padding:60px 0}
+    .contact{padding:36px 24px}
+    .dlg-head{padding:20px 20px 14px}.dlg-body{padding:4px 20px 24px}
+  }
+</style>
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="wrap bar">
+    <a class="mark" href="#top">Fahrim Arabin Farsa</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav class="menu" id="menu" aria-label="Main">
+      <a class="nav-link" href="#work">Projects</a>
+      <a class="nav-link" href="#education">Education</a>
+      <a class="nav-link" href="#activities">Activities</a>
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-link" href="#contact">Contact</a>
+      <a class="btn" href="assets/Fahrim_Arabin_Farsa_CV.pdf" download>Download CV</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" aria-labelledby="name">
+    <h1 id="name">Fahrim Arabin Farsa</h1>
+    <p class="lede">Final-year Computer Science and Engineering student at BRAC University. I've built everything from logic circuits and file systems to web apps, and I'm now researching how AI language models handle Bengali.</p>
+    <div class="btn-row">
+      <a class="btn" href="#work">See my projects</a>
+      <a class="btn ghost" href="assets/Fahrim_Arabin_Farsa_CV.pdf" download>Download CV</a>
+      <a class="btn ghost" href="https://github.com/Farsa27" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/fahrim-farsa-a80b21266/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+        LinkedIn</a>
+    </div>
+    <ul class="facts">
+      <li><strong>BRAC University</strong>, Dhaka</li>
+      <li>Graduating <strong>January 2027</strong></li>
+      <li><strong>10 projects</strong> across six areas</li>
+      <li>Bengali, English, learning Chinese</li>
+    </ul>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <h2 id="work-h">Projects, from research down to hardware</h2>
+    <p class="intro">My projects cover every layer of a computer system, from language-model research at the top to the circuits underneath. Filter by area, or open any project for the full details.</p>
+    <div class="filters" role="group" aria-label="Filter projects by area" id="filters"></div>
+    <ol class="stack" id="stack"></ol>
+    <noscript><p>Turn on JavaScript to see the project list, or download my CV.</p></noscript>
+  </section>
+
+  <section id="education" class="split" aria-label="Education">
+    <div>
+      <h2>Education</h2>
+      <ul class="rows">
+        <li><strong>B.Sc. in Computer Science and Engineering</strong><span class="sub">BRAC University, Dhaka · 2022 to January 2027 (expected)</span><span class="sub">CGPA 3.35 / 4.00</span></li>
+        <li><strong>Higher Secondary Certificate (HSC), GPA 5.00 / 5.00</strong><span class="sub">Birshrestha Munshi Abdur Rouf Public College, Dhaka Board · 2020</span></li>
+        <li><strong>Secondary School Certificate (SSC), GPA 5.00 / 5.00</strong><span class="sub">Feni Government Girls' High School, Comilla Board · 2018</span></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Coursework</h2>
+      <p class="intro" style="margin-bottom:0">Highlights from my degree: Data Structures, Algorithms, Database Systems, Software Engineering, Operating Systems, Computer Networks, Artificial Intelligence and Data Science.</p>
+      <button class="toggle" aria-expanded="false" aria-controls="courses" id="courses-toggle">Show all coursework</button>
+      <div class="coursework" id="courses" hidden>
+        <h4>Programming and theory</h4>
+        <p>Programming Language I and II, Data Structures, Algorithms, Discrete Mathematics, Automata and Computability, Numerical Methods</p>
+        <h4>Software, data and AI</h4>
+        <p>Database Systems, Software Engineering, System Analysis and Design, Artificial Intelligence, Data Science: Coding with Real-World Data, Computer Graphics, Introduction to Robotics</p>
+        <h4>Systems and networks</h4>
+        <p>Operating Systems, Computer Architecture, Microprocessors, Computer Networks, Data Communications</p>
+        <h4>Electronics and hardware</h4>
+        <p>Circuits and Electronics, Electronic Devices and Circuits, Digital Logic Design, Digital Electronics and Pulse Techniques, VLSI Design</p>
+        <h4>Mathematics and statistics</h4>
+        <p>Differential and Integral Calculus, Complex Variables and Laplace Transforms, Linear Algebra and Fourier Analysis, Statistics and Probability</p>
+        <h4>Humanities and social sciences</h4>
+        <p>English Composition, Introduction to English Prose, Bangla Language and Literature, Emergence of Bangladesh, Ethics and Culture, Introduction to Microeconomics, Sociology, Anthropology, Art, Community and the Future</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities" aria-labelledby="act-h">
+    <h2 id="act-h">Beyond the classroom</h2>
+    <p class="intro">Experiences that built my communication, teamwork and research skills.</p>
+    <ul class="rows">
+      <li>
+        <strong>Residential semester, TARC campus, Savar</strong><span class="sub">BRAC University · Summer 2023</span>
+        <ul>
+          <li>Took part in debates, drama and impromptu speaking, and gave several presentations.</li>
+          <li>Cleaned the campus grounds with my section mates as a service-learning activity.</li>
+          <li>Visited a museum and wrote a report on it, and completed a glass painting.</li>
+          <li>Wrote a book review of <em>In a Land Far from Home: A Bengali in Afghanistan</em>.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Street Food Culture in Dhaka: documentary and research</strong><span class="sub">Course project</span>
+        <ul>
+          <li>Interviewed and recorded eight street-food vendors across Dhaka.</li>
+          <li>Edited the interviews and supporting footage into a documentary using CapCut.</li>
+          <li>Built the project mind map, and wrote the research paper analysing the findings on my own.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Agent X AI Prompting Competition</strong><span class="sub">2024 · Participant</span>
+        <ul><li>Designed and built an AI chatbot as my competition entry.</li></ul>
+      </li>
+    </ul>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <h2 id="skills-h">Skills and training</h2>
+    <p class="intro">Tools I've used in the projects above, plus certified training.</p>
+    <div class="skills-grid">
+      <div class="skill"><h3>Programming</h3><ul class="pills"><li>Python</li><li>JavaScript</li><li>SQL</li><li>C</li><li>R</li><li>Assembly (RISC-V, 8086)</li></ul></div>
+      <div class="skill"><h3>Web and databases</h3><ul class="pills"><li>HTML</li><li>CSS</li><li>Node.js</li><li>Express.js</li><li>MongoDB</li></ul></div>
+      <div class="skill"><h3>Machine learning and data</h3><ul class="pills"><li>scikit-learn</li><li>ResNet50</li><li>Feature engineering</li><li>Exploratory data analysis</li><li>Statistics</li><li>NLP</li><li>LLM evaluation</li></ul></div>
+      <div class="skill"><h3>Systems, networks and hardware</h3><ul class="pills"><li>Linux</li><li>Cisco Packet Tracer</li><li>VLSM</li><li>RIPv2</li><li>DHCP</li><li>OpenGL</li><li>Digital logic ICs</li><li>Breadboard prototyping</li></ul></div>
+      <div class="skill"><h3>Tools and ways of working</h3><ul class="pills"><li>Git and GitHub</li><li>Figma</li><li>LaTeX and Overleaf</li><li>Microsoft Excel</li><li>Agile (Scrum)</li><li>emu8086</li></ul></div>
+      <div class="skill"><h3>Languages</h3><ul class="pills"><li>Bengali (native)</li><li>English (fluent)</li><li>Chinese (currently studying)</li></ul></div>
+      <div class="skill">
+        <h3>DataCamp</h3>
+        <ul class="pills"><li>Introduction to Data Science in Python</li><li>Exploratory Data Analysis in Python</li><li>Introduction to Statistics in Python</li><li>Feature Engineering for Machine Learning in Python</li><li>Supervised Learning with scikit-learn</li><li>Time Series Analysis in Python</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Microsoft 365 Copilot</h3>
+        <ul class="pills"><li>Introduction to Microsoft 365 Copilot</li><li>Explore the possibilities</li><li>Optimize and extend</li><li>Summarize and simplify information</li><li>Create and draft</li><li>Edit and transform content</li><li>Ask questions and analyze content</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Get in touch</h2>
+    <p>I'm graduating in January 2027 and open to roles in software, AI, data and beyond. Email is the quickest way to reach me.</p>
+    <div class="btn-row">
+      <a class="btn" href="mailto:fahrimfarsa@gmail.com">Email me</a>
+      <button class="btn ghost" id="copy-email" type="button">Copy email address</button>
+      <a class="btn ghost" href="https://www.linkedin.com/in/fahrim-farsa-a80b21266/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="assets/Fahrim_Arabin_Farsa_CV.pdf" download>Download CV</a>
+    </div>
+    <p class="toast" id="toast" role="status" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Fahrim Arabin Farsa, Dhaka, Bangladesh</span>
+  <a href="#top">Back to top</a>
+</footer>
+
+<button class="to-top" id="to-top" aria-label="Back to top">↑</button>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dlg-head">
+    <div><div class="layer" id="dlg-layer"></div><h3 id="dlg-title"></h3><p class="meta" id="dlg-meta" style="margin:0"></p></div>
+    <button class="close" id="dlg-close" aria-label="Close">×</button>
+  </div>
+  <div class="dlg-body" id="dlg-body"></div>
+</dialog>
+
+<script>
+const GH = "https://github.com/Farsa27/";
+const projects = [
+  {
+    id:"thesis", layer:"Research", title:"Bengali–English LLM mental health support", status:"In progress",
+    meta:"Undergraduate thesis, BRAC University · 2026 to present",
+    tags:["Python","LLMs","NLP","Model evaluation"],
+    sum:"Investigating whether large language models give equally good and equally safe mental health support in Bengali as in English.",
+    body:`<h4>The question</h4>
+      <p>Large language models are mostly trained and tested in English. My thesis asks whether the mental health support they give changes when the same person asks in Bengali, and if so, where and why.</p>
+      <h4>What I'm doing</h4>
+      <ul>
+        <li>Designing a controlled Bengali–English evaluation framework, so the two languages are compared like for like.</li>
+        <li>Covering a range of mental health conditions, prompt types and severity levels.</li>
+        <li>Analysing response quality, safety mechanisms and language-specific performance.</li>
+      </ul>
+      <h4>Progress so far</h4>
+      <ul><li>Wrote the P1 and P2 thesis reports.</li><li>Presented the research as an academic poster.</li></ul>`
+  },
+  {
+    id:"movie", layer:"Machine learning", title:"Movie genre prediction from posters",
+    meta:"Team of three",
+    tags:["Python","scikit-learn","ResNet50","Computer vision"],
+    sum:"Predicting several genres per film from its poster alone, comparing handcrafted visual features with deep features from ResNet50.",
+    body:`<p>Full title: <em>Interpretable Visual Feature Analysis for Multi-Label Movie Genre Prediction</em>.</p>
+      <h4>The problem</h4>
+      <p>A film usually belongs to several genres at once, so this is a multi-label classification task: the model predicts every genre that applies from the poster image.</p>
+      <h4>Approach</h4>
+      <ul>
+        <li>Extracted handcrafted visual features from the posters, alongside deep features from a pretrained ResNet50 network.</li>
+        <li>Trained and compared Logistic Regression, Random Forest and Support Vector Machine models.</li>
+        <li>Evaluated with Macro-F1, Micro-F1, Hamming Loss, ROC-AUC and PR-AUC, which together show both overall accuracy and how well rarer genres are handled.</li>
+      </ul>
+      <h4>My role</h4>
+      <ul><li>Carried out the literature review.</li><li>Ran the models.</li><li>Wrote the academic paper documenting the method and results.</li></ul>`
+  },
+  {
+    id:"transit", layer:"Web applications", title:"Mass Transit Control System",
+    meta:"Team project · Agile (Scrum)",
+    tags:["Node.js","Express.js","MongoDB","JavaScript","HTML","CSS"],
+    sum:"A full-stack metro management web app. I built seven of its features and served as Scrum Master for two sprints.",
+    body:`<h4>How we worked</h4>
+      <p>The team built the app in Agile sprints using Scrum. I served as Scrum Master for two of them, coordinating the team's work, and also contributed to the website's design.</p>
+      <h4>Features I built</h4>
+      <ul>
+        <li><strong>Admin panel:</strong> admins can create, update and delete schedules and website content, and manage users and the metro.</li>
+        <li><strong>Lost and found:</strong> users post lost items with pictures, a description and contact details, update the status, and collect an item by answering verification questions.</li>
+        <li><strong>Advertising:</strong> companies can promote their businesses and products through the website.</li>
+        <li><strong>Two languages:</strong> the whole site works in both Bengali and English.</li>
+        <li><strong>Service alerts:</strong> users are notified about possible problems such as schedule delays.</li>
+        <li><strong>Student fare waivers:</strong> students can apply for reduced fares by submitting the required information.</li>
+        <li><strong>Trip feedback:</strong> passengers rate their journey and leave short feedback after each trip.</li>
+      </ul>`
+  },
+  {
+    id:"hr", layer:"Web applications", title:"Human resource management system",
+    meta:"2024",
+    tags:["Web application","Database"],
+    sum:"A locally hosted web app combining admin tools, a directory of essential resources and rental-space search.",
+    body:`<h4>Features</h4>
+      <ul>
+        <li><strong>Admin controls:</strong> create, read, update and delete records.</li>
+        <li><strong>Essential resources directory:</strong> listings of schools, colleges, hospitals and other essential services.</li>
+        <li><strong>Rental-space search:</strong> users can find rental spaces.</li>
+      </ul>`
+  },
+  {
+    id:"network", layer:"Networks", title:"Bracu Network: campus network design",
+    meta:"CSE421 Computer Networks · Fall 2025",
+    tags:["Cisco Packet Tracer","VLSM","RIPv2","Static routing","DHCP","DNS"],
+    sum:"A network for six university departments built from one /16 address block, with routing, DHCP relay and DNS, web and email servers.",
+    repo:"bracu-campus-network",
+    body:`<h4>Addressing plan</h4>
+      <p>I divided <code>11.6.0.0/16</code> with VLSM, largest network first, so each department gets the smallest subnet that fits its hosts.</p>
+      <table>
+        <thead><tr><th>Department</th><th>Hosts</th><th>Subnet</th></tr></thead>
+        <tbody>
+          <tr><td>CSE</td><td>250</td><td>11.6.0.0/24</td></tr>
+          <tr><td>BBS</td><td>170</td><td>11.6.1.0/24</td></tr>
+          <tr><td>MNS</td><td>150</td><td>11.6.2.0/24</td></tr>
+          <tr><td>BIL</td><td>120</td><td>11.6.3.0/25</td></tr>
+          <tr><td>EEE</td><td>100</td><td>11.6.3.128/25</td></tr>
+          <tr><td>LAW</td><td>50</td><td>11.6.4.0/26</td></tr>
+          <tr><td>4 WAN links</td><td>2 each</td><td>11.6.4.64/30 to 11.6.4.76/30</td></tr>
+        </tbody>
+      </table>
+      <h4>Routing</h4>
+      <ul>
+        <li>RIPv2 with <code>no auto-summary</code> between CSE, EEE and BBS, with LAN interfaces set as passive.</li>
+        <li>Static routes everywhere else; MNS, a stub network, uses a single default route.</li>
+      </ul>
+      <h4>Services</h4>
+      <ul>
+        <li>Centralised DHCP on the CSE router for three departments, reached through DHCP relay (<code>ip helper-address</code>).</li>
+        <li>Separate DHCP servers in LAW and BIL, one DNS server, web servers in CSE and MNS, and an email server in every department.</li>
+      </ul>`
+  },
+  {
+    id:"simplefs", layer:"Systems and graphics", title:"SimpleFS: a file system in C",
+    meta:"CSE321 Operating Systems · 2026 · Individual project",
+    tags:["C","Operating systems","File systems"],
+    sum:"A Unix-style file system inside a disk image, with a superblock, allocation bitmaps, inodes and a root directory.",
+    repo:"simple-file-system-CSE321--Operating-Systems",
+    body:`<h4>What it does</h4>
+      <p>Two command-line tools: one formats a new disk image, the other copies files into it.</p>
+      <h4>Design</h4>
+      <ul>
+        <li>A 256 KB image of 64 blocks, each 4 KB: superblock, inode bitmap, data bitmap, inode table and 60 data blocks.</li>
+        <li>32 inodes of 128 bytes, each with three direct block pointers, so files can be up to 12 KB.</li>
+        <li>First-fit allocation of free inodes and data blocks using the bitmaps.</li>
+        <li>Rejects duplicate names, oversized files, over-long names and invalid images; empty files use no data blocks.</li>
+        <li>Zero-fills the unused part of each block, so no stale data leaks into the image.</li>
+      </ul>
+      <h4>Quality</h4>
+      <p>Compiles with no warnings under <code>-Wall -Wextra -std=c11</code>, and stores files byte-for-byte.</p>`
+  },
+  {
+    id:"underwater", layer:"Systems and graphics", title:"3D underwater simulation",
+    meta:"2025",
+    tags:["Python","OpenGL","Computer graphics"],
+    sum:"An interactive 3D underwater scene where trash appears and can be cleaned up at the press of a button.",
+    body:`<h4>What I built</h4>
+      <ul>
+        <li>The 3D underwater environment.</li>
+        <li>Trash that spawns in the scene, and a button that cleans it up.</li>
+        <li>Camera controls and movement through the scene.</li>
+      </ul>`
+  },
+  {
+    id:"voltmeter", layer:"Hardware", title:"Digital voltmeter without a microcontroller",
+    meta:"CSE350 Digital Electronics · 2026 · Team of four",
+    tags:["Flash ADC","LM324","74148","74LS04","74LS47","Breadboard"],
+    sum:"A 3-bit flash ADC built only from analog and logic ICs, showing the input voltage level on a 7-segment display.",
+    repo:"digital-voltmeter-flash-adc",
+    body:`<h4>How it works</h4>
+      <ul>
+        <li>Eight equal 10 kΩ resistors divide 5 V into seven reference voltages, 0.625 V apart.</li>
+        <li>Seven comparators (two LM324 chips) compare the input voltage with each reference.</li>
+        <li>A 74148 priority encoder converts the comparator outputs into a 3-bit number.</li>
+        <li>A 74LS04 inverts the encoder's active-low outputs for the decoder.</li>
+        <li>A 74LS47 decoder drives a common-anode 7-segment display through 220 Ω resistors.</li>
+      </ul>
+      <h4>Design challenge</h4>
+      <p>The encoder signals with active-low outputs, while the decoder expects active-high inputs. Adding an inverter on each of the three lines fixed the mismatch.</p>
+      <h4>Documentation</h4>
+      <p>Built and tested on a breadboard for under ৳500 in parts, and written up as an IEEE-format report.</p>`
+  },
+  {
+    id:"robot", layer:"Hardware", title:"Mapper robot",
+    meta:"Robotics",
+    tags:["Robotics","Obstacle detection","Camera"],
+    sum:"A robot that detects obstacles, moves around them and photographs its surroundings.",
+    body:`<h4>What it does</h4>
+      <ul>
+        <li>Detects obstacles in its path.</li>
+        <li>Adjusts its movement to avoid them.</li>
+        <li>Takes pictures of its environment as it moves.</li>
+      </ul>`
+  },
+  {
+    id:"calculator", layer:"Hardware", title:"Digital calculator",
+    meta:"2025",
+    tags:["Digital electronics"],
+    sum:"A calculator built as a digital electronics project.",
+    body:`<p>A calculator built as a digital electronics project in 2025.</p>`
+  }
+];
+
+const layers = ["All", ...new Set(projects.map(p => p.layer))];
+const stack = document.getElementById("stack");
+const filters = document.getElementById("filters");
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+stack.innerHTML = projects.map(p => `
+  <li class="proj" data-layer="${esc(p.layer)}">
+    <div class="layer">${esc(p.layer)}</div>
+    <div>
+      <h3>${esc(p.title)}${p.status ? `<span class="status">${esc(p.status)}</span>` : ""}</h3>
+      <p class="meta">${esc(p.meta)}</p>
+      <p class="sum">${esc(p.sum)}</p>
+      <ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+    </div>
+    <div class="actions">
+      <button class="btn" data-open="${p.id}" type="button">Read more</button>
+      ${p.repo ? `<a class="btn ghost" href="${GH + p.repo}" target="_blank" rel="noopener">View code</a>` : ""}
+    </div>
+  </li>`).join("");
+
+filters.innerHTML = layers.map(l => {
+  const n = l === "All" ? projects.length : projects.filter(p => p.layer === l).length;
+  return `<button class="chip" type="button" aria-pressed="${l === "All"}" data-filter="${esc(l)}">${esc(l)}<span class="count">${n}</span></button>`;
+}).join("");
+
+filters.addEventListener("click", e => {
+  const b = e.target.closest("[data-filter]"); if (!b) return;
+  filters.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b));
+  stack.querySelectorAll(".proj").forEach(li => li.hidden = !(b.dataset.filter === "All" || li.dataset.layer === b.dataset.filter));
+});
+
+const dlg = document.getElementById("dlg");
+let lastFocus = null;
+stack.addEventListener("click", e => {
+  const b = e.target.closest("[data-open]"); if (!b) return;
+  const p = projects.find(x => x.id === b.dataset.open);
+  document.getElementById("dlg-layer").textContent = p.layer;
+  document.getElementById("dlg-title").textContent = p.title;
+  document.getElementById("dlg-meta").textContent = p.meta;
+  const tools = `<h4>Tools and topics</h4><ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>`;
+  const foot = `<div class="dlg-foot">${p.repo ? `<a class="btn" href="${GH + p.repo}" target="_blank" rel="noopener">View code on GitHub</a>` : ""}<button class="btn ghost" type="button" data-close>Close</button></div>`;
+  document.getElementById("dlg-body").innerHTML = p.body + tools + foot;
+  lastFocus = b; dlg.showModal(); dlg.querySelector(".dlg-body").scrollTop = 0;
+});
+dlg.addEventListener("click", e => { if (e.target === dlg || e.target.closest("[data-close]")) dlg.close(); });
+document.getElementById("dlg-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("close", () => lastFocus && lastFocus.focus());
+
+const toggle = document.getElementById("courses-toggle"), courses = document.getElementById("courses");
+toggle.addEventListener("click", () => {
+  const open = toggle.getAttribute("aria-expanded") === "true";
+  toggle.setAttribute("aria-expanded", !open); courses.hidden = open;
+  toggle.textContent = open ? "Show all coursework" : "Hide coursework";
+});
+
+const menuBtn = document.querySelector(".menu-toggle"), menu = document.getElementById("menu");
+menuBtn.addEventListener("click", () => {
+  const open = menu.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", open);
+  menuBtn.textContent = open ? "Close" : "Menu";
+});
+menu.addEventListener("click", e => { if (e.target.closest("a")) { menu.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); menuBtn.textContent = "Menu"; } });
+
+const toast = document.getElementById("toast");
+document.getElementById("copy-email").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText("fahrimfarsa@gmail.com"); toast.textContent = "Email address copied: fahrimfarsa@gmail.com"; }
+  catch { toast.textContent = "Copy didn't work here. My email is fahrimfarsa@gmail.com"; }
+  setTimeout(() => toast.textContent = "", 4000);
+});
+
+const header = document.querySelector(".site-header"), toTop = document.getElementById("to-top");
+const links = [...document.querySelectorAll(".menu a.nav-link")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const onScroll = () => {
+  header.classList.toggle("scrolled", scrollY > 8);
+  toTop.classList.toggle("show", scrollY > 700);
+  let current = null;
+  sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < 140) current = i; });
+  links.forEach((a, i) => a.classList.toggle("active", i === current));
+};
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+toTop.addEventListener("click", () => scrollTo({top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}));
+</script>
+</body>
+</html>
