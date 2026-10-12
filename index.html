@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fahrim Arabin Farsa | Computer Science & Engineering</title>
-<meta name="description" content="Portfolio of Fahrim Arabin Farsa, final-year Computer Science and Engineering student at BRAC University: projects from digital hardware and networks to web apps and LLM research.">
+<meta name="description" content="Portfolio of Fahrim Arabin Farsa, last-semester Computer Science and Engineering student at BRAC University: projects from digital hardware and networks to web apps and LLM research.">
 <meta property="og:title" content="Fahrim Arabin Farsa | Computer Science & Engineering">
 <meta property="og:description" content="Projects from digital hardware and networks to web apps and LLM research.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3864'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='white' text-anchor='middle'%3EFF%3C/text%3E%3C/svg%3E">
@@ -173,7 +173,7 @@
 <main class="wrap">
   <section class="hero" aria-labelledby="name">
     <h1 id="name">Fahrim Arabin Farsa</h1>
-    <p class="lede">Final-year Computer Science and Engineering student at BRAC University. I've built everything from logic circuits and file systems to web apps, and I'm now researching how AI language models handle Bengali.</p>
+    <p class="lede">Last-semester Computer Science and Engineering student at BRAC University. I've built everything from logic circuits and file systems to web apps, and I'm now researching how AI language models handle Bengali.</p>
     <div class="btn-row">
       <a class="btn" href="#work">See my projects</a>
       <a class="btn ghost" href="assets/Fahrim_Arabin_Farsa_CV.pdf" download>Download CV</a>
@@ -187,7 +187,7 @@
     <ul class="facts">
       <li><strong>BRAC University</strong>, Dhaka</li>
       <li>Graduating <strong>January 2027</strong></li>
-      <li><strong>10 projects</strong> across six areas</li>
+      <li><strong>11 projects</strong> across six areas</li>
       <li>Bengali, English, learning Chinese</li>
     </ul>
   </section>
@@ -344,12 +344,39 @@ const projects = [
       <ul><li>Carried out the literature review.</li><li>Ran the models.</li><li>Wrote the academic paper documenting the method and results.</li></ul>`
   },
   {
+    id:"churn", layer:"Machine learning", title:"Telco customer churn prediction",
+    meta:"CSE422 Artificial Intelligence · 2025 · Group project",
+    tags:["Python","pandas","scikit-learn","Classification","K-Means","PCA"],
+    sum:"Predicting which of 7,043 telecom customers will cancel their service, and grouping customers into segments.",
+    repo:"telco-customer-churn",
+    body:`<h4>The data</h4>
+      <p>The Telco Customer Churn dataset: 7,043 customers with 19 features, covering demographics, phone and internet services, contract type, billing and charges.</p>
+      <h4>Workflow</h4>
+      <ul>
+        <li>Explored every feature with summary statistics, histograms, bar charts, box plots and a correlation heatmap.</li>
+        <li>Cleaned missing charges, one-hot encoded categorical features and scaled numerical ones.</li>
+        <li>Split the data 70 / 10 / 20 into training, validation and test sets, stratified by churn.</li>
+      </ul>
+      <h4>Results</h4>
+      <table>
+        <thead><tr><th>Model</th><th>Accuracy</th><th>F1</th><th>AUC</th></tr></thead>
+        <tbody>
+          <tr><td>K-Nearest Neighbours</td><td>0.77</td><td>0.50</td><td>0.66</td></tr>
+          <tr><td>Logistic Regression</td><td>0.81</td><td>0.60</td><td>0.73</td></tr>
+          <tr><td>Neural network (MLP)</td><td>0.80</td><td>0.54</td><td>0.69</td></tr>
+        </tbody>
+      </table>
+      <p>Logistic Regression performed best overall.</p>
+      <h4>Customer segments</h4>
+      <p>K-Means clustering (k = 3, chosen with the elbow method and silhouette scores) split customers into a large high-spending group, mostly on fibre internet; a low-spending group, often on two-year contracts; and a smaller group in between. The clusters were visualised with PCA.</p>`
+  },
+  {
     id:"transit", layer:"Web applications", title:"Mass Transit Control System",
     meta:"Team project · Agile (Scrum)",
     tags:["Node.js","Express.js","MongoDB","JavaScript","HTML","CSS"],
-    sum:"A full-stack metro management web app. I built seven of its features and served as Scrum Master for two sprints.",
+    sum:"A full-stack metro management web app. I built seven of its features and served as Scrum Master for two Agile sprints.",
     body:`<h4>How we worked</h4>
-      <p>The team built the app in Agile sprints using Scrum. I served as Scrum Master for two of them, coordinating the team's work, and also contributed to the website's design.</p>
+      <p>The team built the app in Agile sprints using Scrum. I served as the Agile Scrum Master for two of them, coordinating the team's work, and also contributed to the website's design.</p>
       <h4>Features I built</h4>
       <ul>
         <li><strong>Admin panel:</strong> admins can create, update and delete schedules and website content, and manage users and the metro.</li>
@@ -362,7 +389,7 @@ const projects = [
       </ul>`
   },
   {
-    id:"hr", layer:"Web applications", title:"Human resource management system",
+    id:"hr", layer:"Web applications", title:"Human rights management system",
     meta:"2024",
     tags:["Web application","Database"],
     sum:"A locally hosted web app combining admin tools, a directory of essential resources and rental-space search.",
