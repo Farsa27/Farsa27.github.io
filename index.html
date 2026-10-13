@@ -389,16 +389,26 @@ const projects = [
       </ul>`
   },
   {
-    id:"hr", layer:"Web applications", title:"Human rights management system",
-    meta:"2024",
-    tags:["Web application","Database"],
-    sum:"A locally hosted web app combining admin tools, a directory of essential resources and rental-space search.",
-    body:`<h4>Features</h4>
+    id:"hr", layer:"Web applications", title:"Human Rights Coordination System",
+    meta:"CSE370 Database Systems · Spring 2025 · Group project",
+    tags:["PHP","MySQL","HTML","CSS","XAMPP"],
+    sum:"A web app for finding food, clothing, education, shelter and health care services in Dhaka, with donations and admin-reviewed requests for financial help.",
+    repo:"human-rights-coordination-system",
+    body:`<h4>The idea</h4>
+      <p>Bangladesh's constitution names five fundamental rights: food, clothing, education, shelter and medical care. The app lists institutions for each one and lets users filter them by price range and by city corporation (Dhaka North or South). It also connects people who want to donate with people who need financial help.</p>
+      <h4>Features I built</h4>
       <ul>
-        <li><strong>Admin controls:</strong> create, read, update and delete records.</li>
-        <li><strong>Essential resources directory:</strong> listings of schools, colleges, hospitals and other essential services.</li>
-        <li><strong>Rental-space search:</strong> users can find rental spaces.</li>
-      </ul>`
+        <li><strong>Institution browsing:</strong> a page for each of the five rights, with filters for price range and city corporation.</li>
+        <li><strong>Profile editing:</strong> users update their name, password and phone number.</li>
+        <li><strong>Donations:</strong> users make or update a donation, which admins can see with the donor's name.</li>
+      </ul>
+      <h4>The rest of the system</h4>
+      <ul>
+        <li>Users can request up to ৳1,000 of help with an explanation and a supporting document; admins approve or deny each request.</li>
+        <li>Admins add, edit and delete institutions in every category.</li>
+      </ul>
+      <h4>Database design</h4>
+      <p>Users are specialised into donators and underprivileged users, with admins marked by a flag. Institutions are a disjoint specialisation into the five rights, each with its own details such as a hotline or agent numbers.</p>`
   },
   {
     id:"network", layer:"Networks", title:"Bracu Network: campus network design",
