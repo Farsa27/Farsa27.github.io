@@ -187,7 +187,7 @@
     <ul class="facts">
       <li><strong>BRAC University</strong>, Dhaka</li>
       <li>Graduating <strong>January 2027</strong></li>
-      <li><strong>11 projects</strong> across six areas</li>
+      <li><strong>12 projects</strong> across six areas</li>
       <li>Bengali, English, learning Chinese</li>
     </ul>
   </section>
@@ -461,6 +461,21 @@ const projects = [
       <p>Compiles with no warnings under <code>-Wall -Wextra -std=c11</code>, and stores files byte-for-byte.</p>`
   },
   {
+    id:"assembly", layer:"Systems and graphics", title:"Train ticket booking system in 8086 Assembly",
+    meta:"CSE341 Microprocessors · Fall 2025 · Team of two",
+    tags:["8086 Assembly","EMU8086","Low-level programming"],
+    sum:"A menu-driven train ticketing program with accounts, seat booking, route search, mock payment and an admin mode, written entirely in x86 assembly.",
+    body:`<h4>Features</h4>
+      <ul>
+        <li><strong>Accounts:</strong> users sign up and log in, then view, update or delete their own details.</li>
+        <li><strong>Routes and booking:</strong> users see routes and seat availability, search for a specific route or train, and book tickets.</li>
+        <li><strong>Mock payment:</strong> payment is confirmed with the card number and CVV the user saved at sign-up.</li>
+        <li><strong>Admin mode:</strong> an administrator oversees the system and adds, edits or deletes train schedules.</li>
+      </ul>
+      <h4>Why assembly makes it harder</h4>
+      <p>Without any libraries, menus, input handling, string comparison for logins and searches, and record updates all had to be written by hand using registers, memory and DOS interrupts.</p>`
+  },
+  {
     id:"underwater", layer:"Systems and graphics", title:"3D underwater simulation",
     meta:"2025",
     tags:["Python","OpenGL","Computer graphics"],
@@ -492,16 +507,38 @@ const projects = [
       <p>Built and tested on a breadboard for under ৳500 in parts, and written up as an IEEE-format report.</p>`
   },
   {
-    id:"robot", layer:"Hardware", title:"Mapper robot",
-    meta:"Robotics",
-    tags:["Robotics","Obstacle detection","Camera"],
-    sum:"A robot that detects obstacles, moves around them and photographs its surroundings.",
-    body:`<h4>What it does</h4>
+    id:"robot", layer:"Hardware", title:"RoomMapper Bot",
+    meta:"CSE461 Introduction to Robotics · Spring 2026 · Team of five",
+    tags:["Arduino","ESP32-CAM","Ultrasonic sensing","Embedded C++","IoT"],
+    sum:"An autonomous indoor robot that avoids obstacles, builds a simple map of the room and streams live video over WiFi, for about ৳4,600 in parts.",
+    body:`<h4>How it works</h4>
+      <ol>
+        <li>An ultrasonic sensor on a servo sweeps the area in front of the robot and measures distances.</li>
+        <li>If the path is clear, the Arduino drives forward through an L298N motor driver.</li>
+        <li>If an obstacle is close, the robot stops, scans left and right, and turns towards the side with more space.</li>
+        <li>As it moves, it updates its coordinates to build a 2D map of the room.</li>
+        <li>An ESP32-CAM sends the live camera feed and the map data to a laptop over WiFi.</li>
+      </ol>
+      <h4>Hardware</h4>
+      <table>
+        <thead><tr><th>Part</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>Arduino Uno</td><td>Main controller</td></tr>
+          <tr><td>HC-SR04 ultrasonic sensor + SG90 servo</td><td>Distance scanning</td></tr>
+          <tr><td>L298N driver, 2 DC motors</td><td>Differential drive</td></tr>
+          <tr><td>ESP32-CAM</td><td>WiFi and live video</td></tr>
+          <tr><td>7.4 V battery + 5 V regulator</td><td>Power</td></tr>
+        </tbody>
+      </table>
+      <h4>Problems the team solved</h4>
       <ul>
-        <li>Detects obstacles in its path.</li>
-        <li>Adjusts its movement to avoid them.</li>
-        <li>Takes pictures of its environment as it moves.</li>
-      </ul>`
+        <li><strong>ESP32-CAM reboots:</strong> fixed with a separate voltage regulator and a common ground.</li>
+        <li><strong>5 V to 3.3 V serial link:</strong> a 1 kΩ / 2 kΩ voltage divider protects the ESP32-CAM's receive pin.</li>
+        <li><strong>Noisy distance readings:</strong> several measurements are averaged.</li>
+        <li><strong>Drifting to one side:</strong> PWM speed control balances the two motors.</li>
+      </ul>
+      <h4>Possible improvements</h4>
+      <p>LiDAR with a SLAM algorithm for more accurate maps, and mapping across several rooms.</p>`
   },
   {
     id:"calculator", layer:"Hardware", title:"Digital calculator",
